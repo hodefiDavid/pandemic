@@ -3,3 +3,7 @@
 //
 
 #include "Virologist.hpp"
+
+pandemic::Virologist::Virologist(pandemic::Board board, City city) : Player(board, city) {
+
+}

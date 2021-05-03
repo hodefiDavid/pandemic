@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "Player.hpp"
 
 /* one of the characters of the game
  * Scientist: Can perform a "discover_cure"
@@ -10,9 +11,13 @@
  * with the n parameter passed to the constructor
  * (in the original game n = 4).
  */
-class Scientist {
+namespace pandemic {
 
-};
+    class Scientist : public Player {
 
+    public:
+        Scientist(Board board, City city);
+    };
+}
 
 

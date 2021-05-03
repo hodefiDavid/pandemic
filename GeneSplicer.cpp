@@ -3,3 +3,7 @@
 //
 
 #include "GeneSplicer.hpp"
+
+pandemic::GeneSplicer::GeneSplicer(pandemic::Board board, City city) : Player(board, city) {
+
+}

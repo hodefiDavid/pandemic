@@ -3,15 +3,19 @@
 //
 
 #pragma once
-
+#include "Player.hpp"
 
 /* one of the characters of the game
  * OperationsExpert: Can perform a "build" operation
  * in any city he is in, without throwing a suitable city card.
  */
-class OperationsExpert {
+namespace pandemic {
 
-};
+    class OperationsExpert : public Player {
 
+    public:
+        OperationsExpert(Board board, City city);
+    };
+}
 
 

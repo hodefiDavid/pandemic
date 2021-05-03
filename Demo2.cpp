@@ -14,7 +14,7 @@
 #include "Scientist.hpp"
 #include "FieldDoctor.hpp"
 #include "GeneSplicer.hpp"
-#include "Characters.hpp"
+#include "OperationsExpert.hpp"
 #include "Dispatcher.hpp"
 #include "Medic.hpp"
 #include "Virologist.hpp"

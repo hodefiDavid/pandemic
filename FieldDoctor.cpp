@@ -3,3 +3,7 @@
 //
 
 #include "FieldDoctor.hpp"
+
+pandemic::FieldDoctor::FieldDoctor(pandemic::Board board, City city) : Player(board, city) {
+
+}

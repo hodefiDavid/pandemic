@@ -5,7 +5,7 @@
 #pragma once
 
 #include "Color.hpp"
-#include "Characters.hpp"
+#include "Player.hpp"
 #include "City.hpp"
 #include <iostream>
 #include <fstream>
@@ -19,14 +19,19 @@ namespace pandemic {
         std::string cityName;
         City cityNum;
         Color color;
-        std::map<City,Node> connectedCities ;
+        int numberOfDiseaseCube;
+        std::map<City,bool> connectedCities;
     public:
         Node(std::string city_name,Color city_color,City city_num):cityName(std::move(city_name))
-        ,color(std::move(city_color)),cityNum(city_num){}
-
+        ,color(std::move(city_color)),cityNum(city_num){
+            for(auto cc: connectedCities){
+                cc.second = false;}
+                numberOfDiseaseCube=0;
+        }
+        Node();
         void addNeighborsCities(Node node){
             if (!connectedCities.contains(node.cityNum))
-                connectedCities[node.cityNum]=node;
+                connectedCities[node.cityNum]= true;
         }
     };
     class Graph{
@@ -63,6 +68,13 @@ namespace pandemic {
         void buildNodesReadCities(std::string city_name, Color city_color, int city_num);
 
         void add_edge_between_cities(std::ifstream &file);
+
+        friend  std::ostream& operator<<( std::ostream& os, const Board& board);
+/*
+ * function that delete all the medicine that already has been discover
+ * it do it for all the different disease (colors)
+ */
+        void remove_cure();
     };
 }
 

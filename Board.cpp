@@ -51,25 +51,26 @@ void Board::buildCities(ifstream &file) {
         erase(city_name, ' ');
         erase(city_color, ' ');
 
-        Color c = Color::Blue;
+        Color color = Color::Blue;
         if (city_color == "Red") {
-            c = Color::Red;
+            color = Color::Red;
         } else {
             if (city_color == "Blue") {
-                c = Color::Blue;
+                color = Color::Blue;
             } else {
                 if (city_color == "Black") {
-                    c = Color::Black;
+                    color = Color::Black;
                 } else {
                     if (city_color == "Yellow") {
-                        c = Color::Yellow;
+                        color = Color::Yellow;
                     }
                 }
             }
         }
 
+        City temp = (City)cityNum;
 //building The nodes
-        graph.addCities(city_name, c, cityNum);
+        graph.addCities(city_name, color, temp);
         cityNum++;
     }
 }
