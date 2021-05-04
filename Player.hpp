@@ -16,6 +16,7 @@ namespace pandemic{
         std::string charactersRole;
     public:
         //constructor
+        Player(){};
         Player(Board board, City city);
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -64,15 +65,16 @@ namespace pandemic{
          * then the action will throw an exception.
          */
         virtual Player treat(City city);
-        /*role - a function that returns the role of the player
-         */
-        void role();
         /*
          * Taking some city card.
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        virtual Player take_card(City city);
+        virtual Player take_card(City city){return *this;};
+
+        /*role - a function that returns the role of the player
+         */
+        std::string role(){return this->charactersRole;}
 
     };
 

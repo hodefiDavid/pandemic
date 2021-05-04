@@ -8,6 +8,18 @@
 
 using namespace pandemic;
 using namespace std;
+/**
+ * sendErrorReadCities function send an error if the function read units failed
+ * @param row represent the row number which the error occur
+ */
+void sendErrorReadCities(int row) {
+    string Row = to_string(row);
+    string errorMsg = "the file doesn't mach the pattern:\n"
+                      "\t""'city name' 'color of the disease' 'connected cities' \n"
+                      "\t""the problem is in row :";
+    throw invalid_argument(errorMsg + Row);
+}
+
 
 /**
  * readCities function Cities from ifstream and put the data in the graph
@@ -116,14 +128,24 @@ bool Board::is_clean() {
     return false;
 }
 
-/**
- * sendErrorReadCities function send an error if the function read units failed
- * @param row represent the row number which the error occur
- */
-void sendErrorReadCities(int row) {
-    string Row = to_string(row);
-    string errorMsg = "the file doesn't mach the pattern:\n"
-                      "\t""'city name' 'color of the disease' 'connected cities' \n"
-                      "\t""the problem is in row :";
-    throw invalid_argument(errorMsg + Row);
+std::ostream &pandemic::operator<<(ostream &os, const Board &board) {
+    return os;
 }
+
+void Board::remove_cure() {
+
+}
+
+void Board::sendErrorReadCities(int row) {
+
+}
+
+void Board::remove_cures() {
+
+}
+
+void Board::buildNodesReadCities(std::string city_name, Color city_color, int city_num) {
+
+}
+
+

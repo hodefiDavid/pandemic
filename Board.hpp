@@ -19,7 +19,7 @@ namespace pandemic {
         std::string cityName;
         City cityNum;
         Color color;
-        int numberOfDiseaseCube;
+        int numberOfDiseaseCube{};
         std::map<City,bool> connectedCities;
     public:
         Node(std::string city_name,Color city_color,City city_num):cityName(std::move(city_name))
@@ -28,7 +28,15 @@ namespace pandemic {
                 cc.second = false;}
                 numberOfDiseaseCube=0;
         }
-        Node();
+        Node(){
+            this->cityNum=City::London;
+            for(auto cc: connectedCities){
+                cc.second = false;}
+            numberOfDiseaseCube=0;
+            this->cityName = "";
+            this->color = Color::Black;}
+
+
         void addNeighborsCities(Node node){
             if (!connectedCities.contains(node.cityNum))
                 connectedCities[node.cityNum]= true;
@@ -62,8 +70,6 @@ namespace pandemic {
         bool is_clean();
         void remove_cures();
         void sendErrorReadCities(int row);
-
-        void sendErrorReadUnits(int row);
 
         void buildNodesReadCities(std::string city_name, Color city_color, int city_num);
 

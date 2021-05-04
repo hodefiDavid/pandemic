@@ -42,16 +42,16 @@ TEST_CASE ("throws checks") {
 
     Medic m = {board,City::Atlanta};
             CHECK_NOTHROW(m.role());
-            CHECK_NOTHROW();
-            CHECK_NOTHROW();
+            CHECK_NOTHROW(m.fly_charter(City::Cairo));
+            CHECK_NOTHROW(v.fly_charter(City::Delhi));
     Dispatcher d = {board,City::Atlanta};
 
             CHECK_NOTHROW(d.role());
-            CHECK_NOTHROW();
-            CHECK_NOTHROW();
+            CHECK_NOTHROW(d.build());
+            CHECK_NOTHROW(d.fly_shuttle(City::Lagos));
     OperationsExpert o = {board,City::Atlanta};
-            CHECK_NOTHROW();
-            CHECK_NOTHROW();
+            CHECK_NOTHROW(o.build());
+            CHECK_NOTHROW(o.take_card(City::Atlanta));
     GeneSplicer gen = {board,City::Atlanta};
             CHECK_NOTHROW();
             CHECK_NOTHROW();
@@ -63,7 +63,7 @@ TEST_CASE ("throws checks") {
             CHECK_NOTHROW();
             CHECK_NOTHROW();
             CHECK_NOTHROW();
-    Scientist sc = {board,City::Atlanta};
+    Scientist sc{board, City::Atlanta, 22};
             CHECK_THROWS();
             CHECK_THROWS();
             CHECK_THROWS();
@@ -85,8 +85,8 @@ TEST_CASE ("throws checks") {
             CHECK_FALSE(0);
             CHECK_FALSE(0);
 
-            CHECK(0);
-            CHECK(0);
+            CHECK(1);
+            CHECK(1);
             CHECK_FALSE(0);
 
 
