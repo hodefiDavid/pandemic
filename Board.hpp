@@ -102,7 +102,7 @@ namespace pandemic {
 
 /*
  * function that delete all the medicine that already has been discover
- * it do it for all the different disease (colors)
+ * it do it for all the different disease (colors).
  */
         void remove_cure();
     };
