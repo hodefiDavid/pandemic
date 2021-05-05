@@ -52,10 +52,11 @@ namespace pandemic {
     };
 
     class Graph {
+
         std::map<City, Node> allCities;
     public:
-
         std::map<City, int> diseaseCube;
+
         Node getNode(City city) {
             return allCities[city];
         }
@@ -71,21 +72,20 @@ namespace pandemic {
     class Board {
 
     private:
-        std::vector<int> diseaseCubeV;
+        std::map<City, int> diseaseCube;
 
         void readCities(std::ifstream &file);
 
         void buildCities(std::ifstream &file);
-        std::map<City, int> citysdiseaseCubeV;
+
+        std::map<City, int> citiesToNum;
 
         Graph graph;
     public:
-        Board() {
-//            readCities()
-        }
+        Board();
 
-        int& operator[](City city) {
-            return citysdiseaseCubeV.at(city);
+        int &operator[](City city) {
+            return diseaseCube.at(city);
         }
 
         bool is_clean();
