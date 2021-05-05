@@ -12,42 +12,56 @@
 #include <string>
 #include <map>
 #include <utility>
+#include <vector>
 
 namespace pandemic {
 
-    class Node{
+    class Node {
         std::string cityName;
         City cityNum;
         Color color;
-        int numberOfDiseaseCube{};
-        std::map<City,bool> connectedCities;
+//        int numberOfDiseaseCube;
+        std::map<City, bool> connectedCities;
     public:
-        Node(std::string city_name,Color city_color,City city_num):cityName(std::move(city_name))
-        ,color(std::move(city_color)),cityNum(city_num){
-            for(auto cc: connectedCities){
-                cc.second = false;}
-                numberOfDiseaseCube=0;
+        Node(std::string city_name, Color city_color, City city_num) : cityName(std::move(city_name)),
+                                                                       color(std::move(city_color)), cityNum(city_num) {
+            for (auto cc: connectedCities) {
+                cc.second = false;
+            }
+//            numberOfDiseaseCube = 0;
         }
-        Node(){
-            this->cityNum=City::London;
-            for(auto cc: connectedCities){
-                cc.second = false;}
-            numberOfDiseaseCube=0;
+
+        Node() {
+            this->cityNum = City::London;
+            for (auto cc: connectedCities) {
+                cc.second = false;
+            }
+//            numberOfDiseaseCube = 0;
             this->cityName = "";
-            this->color = Color::Black;}
+            this->color = Color::Black;
+        }
 
+//        int* getNumberOfDiseaseCube() {
+//            return &numberOfDiseaseCube;
+//        }
 
-        void addNeighborsCities(Node node){
+        void addNeighborsCities(Node node) {
             if (!connectedCities.contains(node.cityNum))
-                connectedCities[node.cityNum]= true;
+                connectedCities[node.cityNum] = true;
         }
     };
-    class Graph{
+
+    class Graph {
         std::map<City, Node> allCities;
     public:
-        std::map<City, int> diseaseNumber;
-        void addCities(std::string city_name, Color city_color, City city_num){
-            Node temp{std::move(city_name),std::move(city_color),city_num};
+
+        std::map<City, int> diseaseCube;
+        Node getNode(City city) {
+            return allCities[city];
+        }
+
+        void addCities(std::string city_name, Color city_color, City city_num) {
+            Node temp{std::move(city_name), std::move(city_color), city_num};
             allCities[city_num] = temp;
         }
 
@@ -55,27 +69,37 @@ namespace pandemic {
 
 
     class Board {
+
     private:
-        void readCities(std::ifstream &file) ;
+        std::vector<int> diseaseCubeV;
+
+        void readCities(std::ifstream &file);
+
         void buildCities(std::ifstream &file);
+        std::map<City, int> citysdiseaseCubeV;
 
         Graph graph;
     public:
-        Board(){
+        Board() {
 //            readCities()
         }
-        int &operator[](City city){
-            return graph.diseaseNumber.at(city);
+
+        int& operator[](City city) {
+            return citysdiseaseCubeV.at(city);
         }
+
         bool is_clean();
+
         void remove_cures();
+
         void sendErrorReadCities(int row);
 
         void buildNodesReadCities(std::string city_name, Color city_color, int city_num);
 
         void add_edge_between_cities(std::ifstream &file);
 
-        friend  std::ostream& operator<<( std::ostream& os, const Board& board);
+        friend std::ostream &operator<<(std::ostream &os, const Board &board);
+
 /*
  * function that delete all the medicine that already has been discover
  * it do it for all the different disease (colors)
