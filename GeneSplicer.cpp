@@ -5,7 +5,10 @@
 #include "GeneSplicer.hpp"
 
 pandemic::GeneSplicer::GeneSplicer(pandemic::Board board, City city) : Player(board, city) {
-
+ this->charactersRole = "GeneSplicer";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::GeneSplicer::fly_direct(City city) {
