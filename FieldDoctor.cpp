@@ -5,7 +5,10 @@
 #include "FieldDoctor.hpp"
 
 pandemic::FieldDoctor::FieldDoctor(pandemic::Board board, City city) : Player(board, city) {
-
+ this->charactersRole = "FieldDoctor";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::FieldDoctor::fly_direct(City city) {
