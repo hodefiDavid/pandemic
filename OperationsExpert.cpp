@@ -5,7 +5,10 @@
 #include "OperationsExpert.hpp"
 
 pandemic::OperationsExpert::OperationsExpert(pandemic::Board board, City city) : Player(board, city) {
-
+    this->charactersRole = "OperationsExpert";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::OperationsExpert::fly_direct(City city) {
