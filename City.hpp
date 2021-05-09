@@ -14,4 +14,6 @@ enum class City{
     Seoul,Shanghai,StPetersburg,Sydney,Taipei,Tehran,Tokyo,Washington
 };
 
-
+enum class Color{
+    Blue,Yellow,Black,Red
+};

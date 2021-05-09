@@ -6,6 +6,10 @@
 
 pandemic::Dispatcher::Dispatcher(pandemic::Board board, City city) : Player(board, city) {
 
+    this->charactersRole = "Dispatcher";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::Dispatcher::fly_direct(City city) {

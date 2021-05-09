@@ -16,88 +16,48 @@
 
 namespace pandemic {
 
-    class Node {
-        std::string cityName;
-        City cityNum;
-        Color color;
-//        int numberOfDiseaseCube;
-        std::map<City, bool> connectedCities;
-    public:
-        Node(std::string city_name, Color city_color, City city_num) : cityName(std::move(city_name)),
-                                                                       color(std::move(city_color)), cityNum(city_num) {
-            for (auto cc: connectedCities) {
-                cc.second = false;
-            }
-//            numberOfDiseaseCube = 0;
-        }
-
-        Node() {
-            this->cityNum = City::London;
-            for (auto cc: connectedCities) {
-                cc.second = false;
-            }
-//            numberOfDiseaseCube = 0;
-            this->cityName = "";
-            this->color = Color::Black;
-        }
-
-//        int* getNumberOfDiseaseCube() {
-//            return &numberOfDiseaseCube;
-//        }
-
-        void addNeighborsCities(Node node) {
-            if (!connectedCities.contains(node.cityNum))
-                connectedCities[node.cityNum] = true;
-        }
-    };
-
-    class Graph {
-
-        std::map<City, Node> allCities;
-    public:
-        std::map<City, int> diseaseCube;
-
-        Node getNode(City city) {
-            return allCities[city];
-        }
-
-        void addCities(std::string city_name, Color city_color, City city_num) {
-            Node temp{std::move(city_name), std::move(city_color), city_num};
-            allCities[city_num] = temp;
-        }
-
-    };
-
 
     class Board {
 
     private:
-        std::map<City, int> diseaseCube;
-
-        void readCities(std::ifstream &file);
-
-        void buildCities(std::ifstream &file);
-
+        std::map<City, unsigned int> diseaseCube;
+        std::map<City, Color> cityColor;
+        std::map<Color,bool> isDiseaseCure;
+        std::map<City,bool> gotResearchStations;
+        std::map<City,std::map<City,bool>> allCities;
         std::map<City, int> citiesToNum;
 
-        Graph graph;
     public:
         Board();
 
-        int &operator[](City city) {
+        unsigned int &operator[](City city) {
             return diseaseCube.at(city);
         }
-
+        /*
+         *Boolean method without parameters,
+         * which returns "true" if and only if the whole board is clean,
+         * that is,if there are no disease cubes.
+         */
         bool is_clean();
-
+        /*
+         * A method without parameters,
+         * which removes from the board all the cures that have been discovered so far
+         * This method is intended for the purpose of writing tests;
+         * It never throws an exception.
+         */
         void remove_cures();
+        /*
+         * A method without parameters,
+         * which removes from the board all the research stations that have been discovered so far
+         * This method is intended for the purpose of writing tests;
+         * It never throws an exception.
+         */
+        void remove_stations();
 
-        void sendErrorReadCities(int row);
-
-        void buildNodesReadCities(std::string city_name, Color city_color, int city_num);
-
-        void add_edge_between_cities(std::ifstream &file);
-
+        //Output Operator - Displays the status of the board in any format of your choice. The board mode includes:
+        //The level of disease in each of the cities;
+        //The drugs discovered so far ;
+        //Research stations built so far.
         friend std::ostream &operator<<(std::ostream &os, const Board &board);
 
 /*
