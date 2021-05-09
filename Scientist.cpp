@@ -38,7 +38,11 @@ pandemic::Player pandemic::Scientist::take_card(City city) {
 }
 
 pandemic::Scientist::Scientist(pandemic::Board board1, City city1) : Player(board1, city1) {
-
+    this->charactersRole = "Scientist";
+    this->location = city;
+    this->board = &board;
+//     INT 11111
+    initCards();
 }
 
 pandemic::Scientist::Scientist(pandemic::Board board, City city, int num) {
