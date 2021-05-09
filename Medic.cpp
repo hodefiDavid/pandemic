@@ -5,7 +5,10 @@
 #include "Medic.hpp"
 
 pandemic::Medic::Medic(pandemic::Board board, City city) : Player(board, city) {
-
+this->charactersRole = "Medic";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::Medic::fly_direct(City city) {
