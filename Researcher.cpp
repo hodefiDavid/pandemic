@@ -5,7 +5,10 @@
 #include "Researcher.hpp"
 
 pandemic::Researcher::Researcher(pandemic::Board board, City city) : Player(board, city) {
-
+    this->charactersRole = "Researcher";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::Researcher::fly_direct(City city) {
