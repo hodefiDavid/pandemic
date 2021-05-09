@@ -5,7 +5,10 @@
 #include "Virologist.hpp"
 
 pandemic::Virologist::Virologist(pandemic::Board board, City city) : Player(board, city) {
-
+    this->charactersRole = "Virologist";
+    this->location = city;
+    this->board = &board;
+    initCards();
 }
 
 pandemic::Player pandemic::Virologist::fly_direct(City city) {
