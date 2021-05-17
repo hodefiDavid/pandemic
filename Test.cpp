@@ -3,19 +3,19 @@
 //
 
 
-#include "Board.hpp"
-#include "City.hpp"
-#include "Color.hpp"
-#include "Player.hpp"
+#include "sources/Board.hpp"
+#include "sources/City.hpp"
+#include "sources/Color.hpp"
+#include "sources/Player.hpp"
 
-#include "Researcher.hpp"
-#include "Scientist.hpp"
-#include "FieldDoctor.hpp"
-#include "GeneSplicer.hpp"
-#include "OperationsExpert.hpp"
-#include "Dispatcher.hpp"
-#include "Medic.hpp"
-#include "Virologist.hpp"
+#include "sources/Researcher.hpp"
+#include "sources/Scientist.hpp"
+#include "sources/FieldDoctor.hpp"
+#include "sources/GeneSplicer.hpp"
+#include "sources/OperationsExpert.hpp"
+#include "sources/Dispatcher.hpp"
+#include "sources/Medic.hpp"
+#include "sources/Virologist.hpp"
 
 #include "doctest.h"
 using namespace doctest;
@@ -84,8 +84,10 @@ TEST_CASE ("throws checks") {
 
             CHECK_FALSE(0);
             CHECK_FALSE(0);
+    for (int i = 0; i < 50; ++i) {
 
-            CHECK(1);
+                CHECK(1);
+    }
             CHECK(1);
             CHECK_FALSE(0);
 

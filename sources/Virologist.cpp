@@ -4,11 +4,25 @@
 
 #include "Virologist.hpp"
 
-pandemic::Virologist::Virologist(pandemic::Board board, City city) : Player(board, city) {
+pandemic::Virologist::Virologist(pandemic::Board &board, City city) : Player(board, city) {
     this->charactersRole = "Virologist";
     this->location = city;
-    this->board = &board;
     initCards();
+}
+
+pandemic::Player pandemic::Virologist::treat(City city) {
+    // if city!=location that mean that the Virologist uses his special ability
+    if (city!=location){
+        //checks if there is the right card in their hand
+        if (this->cards[city]){
+            this->cards[city]= false;
+            this->board[city]--;
+            return *this;
+        }else{
+            throw std::runtime_error("the Virologist try to treat a city that he dose not have its card ");
+        }
+    }
+    return Player::treat(city);
 }
 
 pandemic::Player pandemic::Virologist::fly_direct(City city) {
@@ -35,10 +49,8 @@ pandemic::Player pandemic::Virologist::discover_cure(pandemic::Color color) {
     return Player::discover_cure(color);
 }
 
-pandemic::Player pandemic::Virologist::treat(City city) {
-    return Player::treat(city);
-}
 
-pandemic::Player pandemic::Virologist::take_card(City city ) {
-    return Player::take_card( city);
-}
+
+//pandemic::Player pandemic::Virologist::take_card(City city ) {
+//    return Player::take_card( city);
+//}

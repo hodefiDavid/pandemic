@@ -4,18 +4,17 @@
 
 #pragma once
 #include "Player.hpp"
-
 /* one of the characters of the game
- *Paramedic - Medic: When he performs a "treat"
- * operation, he removes all the disease cubes from
- * the city he is in, and not just one.
+ * Dispatcher: When he is at a research station,
+ * he can perform a "direct flight" operation to
+ * any city he wants, without throwing a city card.
  */
 namespace pandemic {
 
-    class Medic : public Player {
+    class Dispatcher : public Player {
 
     public:
-        Medic(Board board, City city);
+        Dispatcher(Board &board, City city);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -54,7 +53,7 @@ namespace pandemic {
          * and a "cure discovery" for the same disease is performed again,
          * we do not throw an exception, and the cards remain in the player's hands.
          */
-        Player discover_cure(Color color) override;
+         Player discover_cure(Color color) override;
         /*Treat - Disease - lowering one disease cube from the city you are in
          * (reducing the level of the disease by 1).
          * If a cure for the disease has already been discovered in the color of the city,
@@ -72,7 +71,8 @@ namespace pandemic {
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card( City city) override;
+        //Player take_card(City city ) ;
+
     };
 }
 

@@ -6,15 +6,16 @@
 #include "Player.hpp"
 
 /* one of the characters of the game
- * OperationsExpert: Can perform a "build" operation
- * in any city he is in, without throwing a suitable city card.
+ *Virologist: Can perform a "treat" operation,
+ * not only in the city in which it is located,
+ * but in any city in the world - by throwing a card of that city.
  */
 namespace pandemic {
 
-    class OperationsExpert : public Player {
+    class Virologist : public Player {
 
     public:
-        OperationsExpert(Board board, City city);
+        Virologist(Board &board, City city);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -71,7 +72,7 @@ namespace pandemic {
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card( City city) override;
+        //Player take_card(City city ) ;
     };
 }
 

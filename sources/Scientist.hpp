@@ -6,15 +6,19 @@
 #include "Player.hpp"
 
 /* one of the characters of the game
- * Researcher: Can perform a "discover_cure"
- * operation in any city - does not have to be at a research station.
+ * Scientist: Can perform a "discover_cure"
+ * operation using only n cards (instead of 5),
+ * with the n parameter passed to the constructor
+ * (in the original game n = 4).
  */
 namespace pandemic {
 
-    class Researcher : public Player {
-
+    class Scientist : public Player {
+    private:
+        int cardsInOrderToDiscoverCure;
     public:
-        Researcher(Board board, City city);
+        Scientist( pandemic::Board &board, City city, int num);
+//        Scientist(Board board1, City city1);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -71,7 +75,7 @@ namespace pandemic {
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card( City city) override;
+        //Player take_card(City city) ;
     };
 }
 

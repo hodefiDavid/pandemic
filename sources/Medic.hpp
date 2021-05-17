@@ -6,15 +6,16 @@
 #include "Player.hpp"
 
 /* one of the characters of the game
- * GeneSplicer: Can perform a "discover_cure"
- * operation with the help of 5 cards - not necessarily
- * from the color of the disease.
+ *Paramedic - Medic: When he performs a "treat"
+ * operation, he removes all the disease cubes from
+ * the city he is in, and not just one.
  */
 namespace pandemic {
-    class GeneSplicer : public Player {
+
+    class Medic : public Player {
 
     public:
-        GeneSplicer(Board board, City city);
+        Medic(Board &board, City city);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -71,7 +72,9 @@ namespace pandemic {
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card(City city ) override;
+        //Player take_card( City city) ;
+
+        void medicTreat(City ct);
     };
 }
 

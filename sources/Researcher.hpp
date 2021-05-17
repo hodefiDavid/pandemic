@@ -4,18 +4,17 @@
 
 #pragma once
 #include "Player.hpp"
+
 /* one of the characters of the game
- * FieldDoctor:
- * Can perform a "treat" operation not only in the city he is in
- * but in any city near the city he is in
- * (according to the context map), without throwing a city card.
+ * Researcher: Can perform a "discover_cure"
+ * operation in any city - does not have to be at a research station.
  */
 namespace pandemic {
 
-    class FieldDoctor : public Player {
+    class Researcher : public Player {
 
     public:
-        FieldDoctor(Board board, City city);
+        Researcher(Board &board, City city);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -72,8 +71,7 @@ namespace pandemic {
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card(City city ) override;
-
+        //Player take_card( City city) ;
     };
 }
 

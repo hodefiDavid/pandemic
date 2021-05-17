@@ -4,11 +4,15 @@
 
 #include "OperationsExpert.hpp"
 
-pandemic::OperationsExpert::OperationsExpert(pandemic::Board board, City city) : Player(board, city) {
+pandemic::OperationsExpert::OperationsExpert(pandemic::Board &board, City city) : Player(board, city) {
     this->charactersRole = "OperationsExpert";
     this->location = city;
-    this->board = &board;
+//    this->board = &board;
     initCards();
+}
+pandemic::Player pandemic::OperationsExpert::build() {
+    this->board.researchStation(location) = true;
+    return *this;
 }
 
 pandemic::Player pandemic::OperationsExpert::fly_direct(City city) {
@@ -27,9 +31,7 @@ pandemic::Player pandemic::OperationsExpert::fly_shuttle(City city) {
     return Player::fly_shuttle(city);
 }
 
-pandemic::Player pandemic::OperationsExpert::build() {
-    return Player::build();
-}
+
 
 pandemic::Player pandemic::OperationsExpert::discover_cure(pandemic::Color color) {
     return Player::discover_cure(color);
@@ -39,6 +41,7 @@ pandemic::Player pandemic::OperationsExpert::treat(City city) {
     return Player::treat(city);
 }
 
-pandemic::Player pandemic::OperationsExpert::take_card(City city) {
-    return Player::take_card( city);
-}
+
+//pandemic::Player pandemic::OperationsExpert::take_card(City city) {
+//    return Player::take_card( city);
+//}

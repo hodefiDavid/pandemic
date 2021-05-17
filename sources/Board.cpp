@@ -26,7 +26,6 @@ void Board::remove_cure() {
 
 }
 
-
 void Board::remove_cures() {
     for (auto c : isDiseaseCure) {
         if(c.second){
@@ -40,8 +39,8 @@ void Board::remove_cures() {
 void Board::remove_stations() {
     for (auto item : gotResearchStations) {
         item.second = false;
+    }
 }
-
 
 Board::Board() {
 
@@ -317,6 +316,7 @@ Board::Board() {
         allCities [City:: Manila ][City:: Taipei ] = true;
         allCities [City:: Manila ][City:: SanFrancisco ] = true;
         allCities [City:: Manila ][City:: HoChiMinhCity ] = true;
+        allCities [City:: Manila ][City:: HongKong ] = true;
         allCities [City:: Manila ][City:: Sydney ] = true;
         allCities [City:: MexicoCity ][City:: LosAngeles ] = true;
         allCities [City:: MexicoCity ][City:: Chicago ] = true;
@@ -444,8 +444,78 @@ Board::Board() {
         gotResearchStations[City::Tokyo] = false;
         gotResearchStations[City::Washington] = false;
     }
-
+    //init citiesToString
+    {
+        citiesToString[City::Algiers] ="Algiers";
+        citiesToString[City::Atlanta] ="Atlanta";
+        citiesToString[City::Baghdad] ="Baghdad";
+        citiesToString[City::Bangkok] ="Bangkok";
+        citiesToString[City::Beijing] ="Beijing";
+        citiesToString[City::Bogota] ="Bogota";
+        citiesToString[City::BuenosAires] ="BuenosAires";
+        citiesToString[City::Cairo] ="Cairo";
+        citiesToString[City::Chennai] ="Chennai";
+        citiesToString[City::Chicago] ="Chicago";
+        citiesToString[City::Delhi] ="Delhi";
+        citiesToString[City::Essen] ="Essen";
+        citiesToString[City::HoChiMinhCity] ="HoChiMinhCity";
+        citiesToString[City::HongKong] ="HongKong";
+        citiesToString[City::Istanbul] ="Istanbul";
+        citiesToString[City::Jakarta] ="Jakarta";
+        citiesToString[City::Johannesburg] ="Johannesburg";
+        citiesToString[City::Karachi] ="Karachi";
+        citiesToString[City::Khartoum] ="Khartoum";
+        citiesToString[City::Kinshasa] ="Kinshasa";
+        citiesToString[City::Kolkata] ="Kolkata";
+        citiesToString[City::Lagos] ="Lagos";
+        citiesToString[City::Lima] ="Lima";
+        citiesToString[City::London] ="London";
+        citiesToString[City::LosAngeles] ="LosAngeles";
+        citiesToString[City::Madrid] ="Madrid";
+        citiesToString[City::Manila] ="Manila";
+        citiesToString[City::MexicoCity] ="MexicoCity";
+        citiesToString[City::Miami] ="Miami";
+        citiesToString[City::Milan] ="Milan";
+        citiesToString[City::Montreal] ="Montreal";
+        citiesToString[City::Moscow] ="Moscow";
+        citiesToString[City::Mumbai] ="Mumbai";
+        citiesToString[City::NewYork] ="NewYork";
+        citiesToString[City::Osaka] ="Osaka";
+        citiesToString[City::Paris] ="Paris";
+        citiesToString[City::Riyadh] ="Riyadh";
+        citiesToString[City::SanFrancisco] ="SanFrancisco";
+        citiesToString[City::Santiago] ="Santiago";
+        citiesToString[City::SaoPaulo] ="SaoPaulo";
+        citiesToString[City::Seoul] ="Seoul";
+        citiesToString[City::Shanghai] ="Shanghai";
+        citiesToString[City::StPetersburg] ="StPetersburg";
+        citiesToString[City::Sydney] ="Sydney";
+        citiesToString[City::Taipei] ="Taipei";
+        citiesToString[City::Tehran] ="Tehran";
+        citiesToString[City::Tokyo] ="Tokyo";
+        citiesToString[City::Washington] ="Washington";
+    }
 }
+
+bool Board::areNeighbor(City ct1, City ct2) {
+        if (allCities[ct1][ct2]){
+            return true;
+        }
+        return false;
+    }
+
+const std::string Board::ctToString(City ct) {
+    return citiesToString[ct];
+}
+
+bool &Board::researchStation(City ct) {
+    return this->gotResearchStations[ct];
+}
+
+Color Board::cityToColor(City ct) {
+    return this->cityColor[ct];
+}
+
 
 
 

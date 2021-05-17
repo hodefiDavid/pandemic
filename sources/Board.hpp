@@ -20,19 +20,31 @@ namespace pandemic {
     class Board {
 
     private:
-        std::map<City, unsigned int> diseaseCube;
+        //was unsinged int
+        std::map<City, int> diseaseCube;
         std::map<City, Color> cityColor;
         std::map<Color,bool> isDiseaseCure;
         std::map<City,bool> gotResearchStations;
         std::map<City,std::map<City,bool>> allCities;
         std::map<City, int> citiesToNum;
+        std::map<City, std::string> citiesToString;
+
 
     public:
         Board();
-
-        unsigned int &operator[](City city) {
-            return diseaseCube.at(city);
-        }
+        /*
+         * this function return true if city 1 and city 2 are neighbor (only one road between them) according to thr game map
+         */
+        bool areNeighbor(City ct1,City ct2);
+        /*
+         * this function return string that represent the given city
+         */
+        const std::string ctToString(City ct);
+        /*
+         * this function return the number of disease cube in a given city
+         * you could also change it to a different number of cube
+         */
+        int &operator[](City city) {return diseaseCube.at(city);}
         /*
          *Boolean method without parameters,
          * which returns "true" if and only if the whole board is clean,
@@ -60,11 +72,26 @@ namespace pandemic {
         //Research stations built so far.
         friend std::ostream &operator<<(std::ostream &os, const Board &board);
 
-/*
- * function that delete all the medicine that already has been discover
- * it do it for all the different disease (colors).
- */
+        /*
+         * a function that return true if there is a research Station in the given city
+         * you also can change if you just build\remove
+         */
+        bool& researchStation(City ct);
+        /*
+         * a function that return city Color to a given city
+         */
+        Color cityToColor(City ct);
+
+        /*
+         * function that delete all the medicine that already has been discover
+         * it do it for all the different disease (colors).
+         */
         void remove_cure();
+        /*
+        * a function that return true if the disease has been cured, checks the given color disease
+        * you also can change it to true\false using this function
+        */
+        bool & isDiseaseHasBeenCured(Color color){return isDiseaseCure[color];};
     };
 }
 

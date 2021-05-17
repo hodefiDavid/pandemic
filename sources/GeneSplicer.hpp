@@ -6,16 +6,15 @@
 #include "Player.hpp"
 
 /* one of the characters of the game
- *Virologist: Can perform a "treat" operation,
- * not only in the city in which it is located,
- * but in any city in the world - by throwing a card of that city.
+ * GeneSplicer: Can perform a "discover_cure"
+ * operation with the help of 5 cards - not necessarily
+ * from the color of the disease.
  */
 namespace pandemic {
-
-    class Virologist : public Player {
+    class GeneSplicer : public Player {
 
     public:
-        Virologist(Board board, City city);
+        GeneSplicer(Board &board, City city);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -72,7 +71,7 @@ namespace pandemic {
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card(City city ) override;
+        //Player take_card(City city ) ;
     };
 }
 

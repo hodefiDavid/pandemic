@@ -7,28 +7,21 @@
 #include <string>
 #include "City.hpp"
 #include "Board.hpp"
-
 namespace pandemic{
     class Board;
+
+   int NUMCARD = 5;
 
     class Player{
     protected:
         std::string charactersRole;
         std::map<City,bool>cards;
         City location;
-        Board *board;
+        Board &board;
         void initCards();
     public:
         //constructor
-        Player(){
-            //the start as shown in the game
-            location = City::Atlanta;
-            initCards();
-            charactersRole="";
-            //there is no board...
-        }
-
-        Player(Board board, City city);
+        Player(Board &board, City city);
 
         /*  Direct flight - fly_direct - Transfer from the current city
          *  to any city of one of the card in his hand.
@@ -95,6 +88,7 @@ namespace pandemic{
 
         /*role - a function that returns the role of the player
          */
+        //dont change Role function because its been used in the function Player::treat (for identifying the Medic)
         std::string role(){return this->charactersRole;}
 
         Player remove_cards(){
