@@ -26,14 +26,6 @@ pandemic::Player pandemic::Medic::treat(City city) {
     return *this;
 }
 
-void pandemic::Medic::medicTreat(City ct) {
-    //get the color of the city
-    Color color = this->board.cityToColor(ct);
-    //if the Disease Has Been Cured zero the number of disease cube in that city
-    if (this->board.isDiseaseHasBeenCured(color)){
-        this->board[ct] = 0;
-    }
-}
 
 pandemic::Player pandemic::Medic::fly_direct(City city) {
     return Player::fly_direct(city);

@@ -25,9 +25,9 @@ pandemic::Player pandemic::Researcher::discover_cure(pandemic::Color color) {
                 }
             }
         }
-
-        if (check >= NUMCARD) {
-            check = NUMCARD;
+        int  num =5;
+        if (check >= num) {
+            check = num;
             for (auto item : this->cards) {
                 if (item.second) {
                     if (this->board.cityToColor(item.first) == color && check > 0) {
@@ -36,6 +36,7 @@ pandemic::Player pandemic::Researcher::discover_cure(pandemic::Color color) {
                     }
                 }
             }
+            this->board.isDiseaseHasBeenCured(color) = true;
             return *this;
         } else {
             throw std::runtime_error(

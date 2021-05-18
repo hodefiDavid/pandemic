@@ -10,7 +10,7 @@
 namespace pandemic{
     class Board;
 
-   int NUMCARD = 5;
+//   int MYNUMCARD = 5;
 
     class Player{
     protected:
@@ -19,6 +19,11 @@ namespace pandemic{
         City location;
         Board &board;
         void initCards();
+        // function that allow the medic to automatically erase all the disease cube
+        // if the medic arrive to city that got disease cube and we already discover a cure for this disease
+        void medicSpecial(City ct);
+
+
     public:
         //constructor
         Player(Board &board, City city);
@@ -95,6 +100,7 @@ namespace pandemic{
             cards.clear();
             return *this;
         }
+
     };
 
 

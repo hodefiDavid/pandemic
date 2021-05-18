@@ -26,8 +26,8 @@ namespace pandemic {
         std::map<Color,bool> isDiseaseCure;
         std::map<City,bool> gotResearchStations;
         std::map<City,std::map<City,bool>> allCities;
-        std::map<City, int> citiesToNum;
         std::map<City, std::string> citiesToString;
+//        std::map<City, int> citiesToNum;
 
 
     public:
@@ -44,7 +44,7 @@ namespace pandemic {
          * this function return the number of disease cube in a given city
          * you could also change it to a different number of cube
          */
-        int &operator[](City city) {return diseaseCube.at(city);}
+        int &operator[](City city) {return diseaseCube[city];}
         /*
          *Boolean method without parameters,
          * which returns "true" if and only if the whole board is clean,

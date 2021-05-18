@@ -74,7 +74,6 @@ namespace pandemic {
          */
         //Player take_card( City city) ;
 
-        void medicTreat(City ct);
     };
 }
 

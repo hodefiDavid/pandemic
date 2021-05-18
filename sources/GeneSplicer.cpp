@@ -44,9 +44,9 @@ pandemic::Player pandemic::GeneSplicer::discover_cure(pandemic::Color color) {
                     check++;
                 }
         }
-
-        if (check >= NUMCARD) {
-            check = NUMCARD;
+        int num =5;
+        if (check >= num) {
+            check = num;
             for (auto item : this->cards) {
                 if (item.second) {
                     if (check > 0) {

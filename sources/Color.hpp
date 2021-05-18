@@ -4,8 +4,11 @@
 
 #pragma once
 
+#include "City.hpp"
+
 namespace pandemic{
     enum class Color{
         Red,Black,Yellow,Blue
     };
+
 }
