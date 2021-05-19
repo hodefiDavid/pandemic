@@ -48,13 +48,13 @@ pandemic::Player pandemic::GeneSplicer::discover_cure(pandemic::Color color) {
         if (check >= num) {
             check = num;
             for (auto item : this->cards) {
-                if (item.second) {
-                    if (check > 0) {
+                if (item.second &&check > 0) {
                         item.second = false;
                         check--;
-                    }
                 }
             }
+            //discover_cure
+            this->board.isDiseaseHasBeenCured(color) = true;
             return *this;
         } else {
             throw std::runtime_error(
@@ -70,7 +70,3 @@ pandemic::Player pandemic::GeneSplicer::discover_cure(pandemic::Color color) {
 pandemic::Player pandemic::GeneSplicer::treat(City city) {
     return Player::treat(city);
 }
-
-//pandemic::Player pandemic::GeneSplicer::take_card(City city ) {
-//    return Player::take_card( city);
-//}

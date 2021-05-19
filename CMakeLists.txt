@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 #        sources/OperationsExpert.hpp sources/Researcher.cpp sources/Researcher.hpp sources/Scientist.cpp sources/Scientist.hpp
 #        sources/Virologist.cpp sources/Virologist.hpp)
 
-file(GLOB_RECURSE SourceList ./sources/*.cpp ./sources/*.hpp)
+file(GLOB_RECURSE SourceList ./sources/*.cpp ./sources/*.hpp ./*cpp)
 
 add_executable(main main.cpp ${SourceList})
 add_executable(myTest Test.cpp ${SourceList})
@@ -16,5 +16,6 @@ add_executable(demo1 Demo1.cpp ${SourceList})
 add_executable(demo2 Demo2.cpp ${SourceList})
 add_executable(pandemic main.cpp)
 add_executable(TT StudentTest1.cpp TestRunner.cpp ${SourceList})
+add_executable(TT3 StudentTest3.cpp  ${SourceList})
 
 include_directories(./sources)

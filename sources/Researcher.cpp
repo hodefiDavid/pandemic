@@ -11,6 +11,8 @@ pandemic::Researcher::Researcher(pandemic::Board &board, City city) : Player(boa
 }
 
 pandemic::Player pandemic::Researcher::discover_cure(pandemic::Color color) {
+    //there is extantion in the player when the Researcher use discover_cure function
+    return Player::discover_cure(color);
     if (this->board.isDiseaseHasBeenCured(color)){return *this;}
 
     int check = 0;

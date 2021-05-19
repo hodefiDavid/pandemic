@@ -65,6 +65,8 @@ pandemic::Player pandemic::Scientist::discover_cure(pandemic::Color color) {
                     }
                 }
             }
+            //discover_cure
+            this->board.isDiseaseHasBeenCured(color)= true;
             return *this;
         } else {
             throw std::runtime_error(

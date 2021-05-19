@@ -83,11 +83,6 @@ namespace pandemic {
         Color cityToColor(City ct);
 
         /*
-         * function that delete all the medicine that already has been discover
-         * it do it for all the different disease (colors).
-         */
-        void remove_cure();
-        /*
         * a function that return true if the disease has been cured, checks the given color disease
         * you also can change it to true\false using this function
         */

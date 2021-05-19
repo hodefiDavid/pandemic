@@ -5,24 +5,40 @@
 #include "Player.hpp"
 
 pandemic::Player::Player(Board &board, City city) : board(board) {
-    initCards();
-    charactersRole = "";
+//    initCards();
+//    charactersRole = "";
+}
+
+pandemic::Player pandemic::Player::drive(City city) {
+    if (location == city) {
+        throw std::runtime_error("player already in the correct city location == city ");
+    }
+    if (board.areNeighbor(location, city)) {
+        this->location = city;
+        if (this->role() == "Medic") {
+            medicSpecial(this->location);
+        }
+    } else {
+        std::string str = "Player::drive was unable to reach the city: " + board.ctToString(city) + " form the city: " +
+                          board.ctToString(location) + "\n";
+        throw std::runtime_error(str);
+    }
+    return *this;
 }
 
 pandemic::Player pandemic::Player::fly_direct(City city) {
-    //if the player already in the correct city we dont do anything
     if (location == city) {
-        //need to understand if medicSpecial works also here-------
-        if (this->role() == "Medic"){
-            medicSpecial(this->location);}
-        return *this;
+        throw std::runtime_error("player already in the correct city location == city ");
     }
+
     if (this->cards[city]) {
         this->cards[city] = false;
+        //change location
         location = city;
 
-        if (this->role() == "Medic"){
-            medicSpecial(this->location);}
+        if (this->role() == "Medic") {
+            medicSpecial(this->location);
+        }
 
         return *this;
     } else {
@@ -32,32 +48,18 @@ pandemic::Player pandemic::Player::fly_direct(City city) {
     }
 }
 
-pandemic::Player pandemic::Player::drive(City city) {
-    if (board.areNeighbor(location, city)) {
-        this->location = city;
-        if (this->role() == "Medic"){
-            medicSpecial(this->location);}
-    } else {
-        std::string str = "Player::drive was unable to reach the city: " + board.ctToString(city) + " form the city: " +
-                          board.ctToString(location) + "\n";
-        throw std::runtime_error(str);
-    }
-    return *this;
-}
-
 pandemic::Player pandemic::Player::fly_charter(City city) {
-    //if the player already in the correct city we dont do anything
     if (location == city) {
-        //need to understand if medicSpecial works also here-------
-        if (this->role() == "Medic"){
-            medicSpecial(this->location);}
-        return *this;
+        throw std::runtime_error("player already in the correct city location == city ");
     }
+
     if (this->cards[location]) {
         this->cards[location] = false;
+        //change location
         location = city;
-        if (this->role() == "Medic"){
-            medicSpecial(this->location);}
+        if (this->role() == "Medic") {
+            medicSpecial(this->location);
+        }
         return *this;
     } else {
         std::string str = "Player::drive was unable to reach the city: " + board.ctToString(city) + " form the city: " +
@@ -67,15 +69,17 @@ pandemic::Player pandemic::Player::fly_charter(City city) {
 }
 
 pandemic::Player pandemic::Player::fly_shuttle(City city) {
-    if (this->location == city){throw std::runtime_error("Player::fly_shuttle cannot fly from city to it self");}
+    if (this->location == city) { throw std::runtime_error("Player::fly_shuttle cannot fly from city to it self"); }
     //if there is a researchStation in the city that you currently in
     if (this->board.researchStation(this->location)) {
         //if there is a researchStation in the city that you want to go
         if (this->board.researchStation(city)) {
+            //change location
             this->location = city;
             //if the medic arrive to city that got disease cube and we already discover a cure for this disease so the medic erase all the disease cube automatically
-            if (this->role() == "Medic"){
-                medicSpecial(this->location);}
+            if (this->role() == "Medic") {
+                medicSpecial(this->location);
+            }
 
             return *this;
         }
@@ -95,10 +99,11 @@ pandemic::Player pandemic::Player::build() {
         //checks if the player have the card of the current city
     else {
         if (this->cards[this->location]) {
-            //build the researchStation
-            this->board.researchStation(this->location) = true;
             //throw a way the card
             this->cards[this->location] = false;
+            //build the researchStation
+            this->board.researchStation(this->location) = true;
+
             return *this;
         } else {
             std::string str =
@@ -115,7 +120,8 @@ pandemic::Player pandemic::Player::discover_cure(pandemic::Color color) {
     //checks if the Disease Has Been Cured
     if (!this->board.isDiseaseHasBeenCured(color)) {
         //checks if the Player in city that have researchStation
-        if (this->board.researchStation(this->location)) {
+        //or if the player is a Researcher so he dont need to be in researchStation in order to preform discover_cure
+        if (this->board.researchStation(this->location) || this->role() == "Researcher") {
             int colorNum = 0;
             //go throw all the cards
             for (auto item : this->cards) {
@@ -127,7 +133,7 @@ pandemic::Player pandemic::Player::discover_cure(pandemic::Color color) {
                     }
                 }
             }
-            int num =5;
+            int num = 5;
             //if the player has at least 5 card
             if (colorNum >= num) {
                 colorNum = num;
@@ -143,6 +149,8 @@ pandemic::Player pandemic::Player::discover_cure(pandemic::Color color) {
                         }
                     }
                 }
+                //discover_cure
+                this->board.isDiseaseHasBeenCured(color) = true;
                 return *this;
             } else {
                 strMsgError =
@@ -231,9 +239,15 @@ void pandemic::Player::medicSpecial(City ct) {
     //get the color of the city
     Color color = this->board.cityToColor(ct);
     //if the Disease Has Been Cured zero the number of disease cube in that city
-    if (this->board.isDiseaseHasBeenCured(color)){
+    if (this->board.isDiseaseHasBeenCured(color)) {
         this->board[ct] = 0;
     }
+}
+
+pandemic::Player pandemic::Player::remove_cards() {
+for(auto item:this->cards){
+    item.second = false;}
+return *this;
 }
 
 //pandemic::Player pandemic::Player::take_card(City city) {

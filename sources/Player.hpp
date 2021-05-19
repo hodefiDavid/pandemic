@@ -10,8 +10,6 @@
 namespace pandemic{
     class Board;
 
-//   int MYNUMCARD = 5;
-
     class Player{
     protected:
         std::string charactersRole;
@@ -96,10 +94,8 @@ namespace pandemic{
         //dont change Role function because its been used in the function Player::treat (for identifying the Medic)
         std::string role(){return this->charactersRole;}
 
-        Player remove_cards(){
-            cards.clear();
-            return *this;
-        }
+        //remove all the card from the players hand
+        Player remove_cards();
 
     };
 

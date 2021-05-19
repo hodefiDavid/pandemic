@@ -7,7 +7,6 @@
 pandemic::OperationsExpert::OperationsExpert(pandemic::Board &board, City city) : Player(board, city) {
     this->charactersRole = "OperationsExpert";
     this->location = city;
-//    this->board = &board;
     initCards();
 }
 pandemic::Player pandemic::OperationsExpert::build() {
@@ -41,7 +40,3 @@ pandemic::Player pandemic::OperationsExpert::treat(City city) {
     return Player::treat(city);
 }
 
-
-//pandemic::Player pandemic::OperationsExpert::take_card(City city) {
-//    return Player::take_card( city);
-//}

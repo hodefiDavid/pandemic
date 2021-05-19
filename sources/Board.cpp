@@ -17,28 +17,24 @@ bool Board::is_clean() {
     }
     return true;
 }
-
+///need to change
 std::ostream &pandemic::operator<<(ostream &os, const Board &board) {
+    for(auto item :board.isDiseaseCure){
+    }
     return os;
 }
 
-void Board::remove_cure() {
-
-}
 
 void Board::remove_cures() {
     for (auto c : isDiseaseCure) {
-        if(c.second){
-            for (auto ct : diseaseCube){
-                ct.second = false;
-            }
-        }
+      c.second = false;
     }
 }
 
 void Board::remove_stations() {
     for (auto item : gotResearchStations) {
         item.second = false;
+
     }
 }
 

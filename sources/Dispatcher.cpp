@@ -17,13 +17,17 @@ pandemic::Player pandemic::Dispatcher::build() {
 
 
 pandemic::Player pandemic::Dispatcher::fly_direct(City city) {
-    //if there is not reaserch station in the city that the player stay use the Player fly_direct function
-    if (!this->board.researchStation(this->location)){
+    if (this->board.researchStation(this->location)){
+        //if there is researchStation in the Dispatcher's location he dont need to throw a cards
+        if (this->location == city){throw std::runtime_error("Dispatcher try to fly_direct to the city he was in");}
+        this->location = city;
+        return *this;
+    }
+    //if there is not research station in the city that the player stay use the Player fly_direct function
+    else{
         return Player::fly_direct(city);
     }
-    //but if there is the Dispacher dont need to throw a cards
-    this->location = city;
-    return *this;
+
 }
 
 pandemic::Player pandemic::Dispatcher::drive(City city) {

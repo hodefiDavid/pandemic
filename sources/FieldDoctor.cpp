@@ -17,6 +17,7 @@ pandemic::Player pandemic::FieldDoctor::treat(City city) {
             //if Disease Has Been Cured we zero the disease cube in the given city
             if (this->board.isDiseaseHasBeenCured(this->board.cityToColor(city))){
                 this->board[city]=0;}
+
             else{this->board[city]--;}
 
             return *this;

@@ -65,13 +65,7 @@ namespace pandemic {
         Player treat(City city) override;
         /*role - a function that returns the role of the player
          */
-//        void role();
-        /*
-         * Taking some city card.
-         * This simulates the process by which the player receives cards
-         * from the deck at the beginning or during the game.
-         */
-        //Player take_card( City city) ;
+
     };
 }
 
