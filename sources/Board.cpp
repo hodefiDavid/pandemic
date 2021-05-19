@@ -10,7 +10,7 @@ using namespace pandemic;
 using namespace std;
 
 bool Board::is_clean() {
-    for(auto i : diseaseCube){
+    for(auto &i : diseaseCube){
         if(i.second>0){
             return false;
         }
@@ -18,21 +18,23 @@ bool Board::is_clean() {
     return true;
 }
 ///need to change
-std::ostream &pandemic::operator<<(ostream &os, const Board &board) {
-    for(auto item :board.isDiseaseCure){
+std::ostream &pandemic::operator<<(std::ostream &os, pandemic::Board &board) {
+   os<<"city and diseaseCube"<<endl;
+    for(auto &item :board.diseaseCube){
+    os<<board.citiesToString[item.first]<<" = "<<item.second<<endl;
     }
     return os;
 }
 
 
 void Board::remove_cures() {
-    for (auto c : isDiseaseCure) {
+    for (auto &c : isDiseaseCure) {
       c.second = false;
     }
 }
 
 void Board::remove_stations() {
-    for (auto item : gotResearchStations) {
+    for (auto &item : gotResearchStations) {
         item.second = false;
 
     }
@@ -494,13 +496,14 @@ Board::Board() {
 }
 
 bool Board::areNeighbor(City ct1, City ct2) {
-        if (allCities[ct1][ct2]){
-            return true;
-        }
-        return false;
+//        if (allCities[ct1][ct2]){
+//            return true;
+//        }
+//        return false;
+    return allCities[ct1][ct2];
     }
 
-const std::string Board::ctToString(City ct) {
+std::string Board::ctToString(City ct) {
     return citiesToString[ct];
 }
 

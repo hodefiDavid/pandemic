@@ -17,27 +17,7 @@ pandemic::Scientist::Scientist(pandemic::Board &board, City city, int num) : Pla
 
 }
 
-pandemic::Player pandemic::Scientist::fly_direct(City city) {
-    return Player::fly_direct(city);
-}
-
-pandemic::Player pandemic::Scientist::drive(City city) {
-    return Player::drive(city);
-}
-
-pandemic::Player pandemic::Scientist::fly_charter(City city) {
-    return Player::fly_charter(city);
-}
-
-pandemic::Player pandemic::Scientist::fly_shuttle(City city) {
-    return Player::fly_shuttle(city);
-}
-
-pandemic::Player pandemic::Scientist::build() {
-    return Player::build();
-}
-
-pandemic::Player pandemic::Scientist::discover_cure(pandemic::Color color) {
+pandemic::Player &pandemic::Scientist::discover_cure(pandemic::Color color) {
     if (this->board.isDiseaseHasBeenCured(color)){return *this;}
 
     int check = 0;
@@ -45,19 +25,21 @@ pandemic::Player pandemic::Scientist::discover_cure(pandemic::Color color) {
     if (this->board.researchStation(this->location)) {
 
         //checks all the cards
-        for (auto item : this->cards) {
+        for (auto &item : this->cards) {
             //checks if the player own the current card
             if (item.second) {
                 //checks if the card is in the correct color
+                ////test
                 if (this->board.cityToColor(item.first) == color) {
                     check++;
                 }
+//                if (true){ check++;}
             }
         }
 
         if (check >= this->cardsInOrderToDiscoverCure) {
             check = cardsInOrderToDiscoverCure;
-            for (auto item : this->cards) {
+            for (auto &item : this->cards) {
                 if (item.second) {
                     if (this->board.cityToColor(item.first) == color && check > 0) {
                         item.second = false;
@@ -68,18 +50,38 @@ pandemic::Player pandemic::Scientist::discover_cure(pandemic::Color color) {
             //discover_cure
             this->board.isDiseaseHasBeenCured(color)= true;
             return *this;
-        } else {
+        }
             throw std::runtime_error(
                     "when the Scientist use discover_cure he didnt have enough cards that in the wanted color");
-        }
-    } else {
+
+    }
         throw std::runtime_error(
                 "when the Scientist use discover_cure,in his location there was not a research station");
-    }
+
+}
+
+pandemic::Player &pandemic::Scientist::fly_direct(City city) {
+    return Player::fly_direct(city);
+}
+
+pandemic::Player &pandemic::Scientist::drive(City city) {
+    return Player::drive(city);
+}
+
+pandemic::Player &pandemic::Scientist::fly_charter(City city) {
+    return Player::fly_charter(city);
+}
+
+pandemic::Player &pandemic::Scientist::fly_shuttle(City city) {
+    return Player::fly_shuttle(city);
+}
+
+pandemic::Player &pandemic::Scientist::build() {
+    return Player::build();
 }
 
 
-    pandemic::Player pandemic::Scientist::treat(City city) {
+    pandemic::Player &pandemic::Scientist::treat(City city) {
         return Player::treat(city);
     }
 

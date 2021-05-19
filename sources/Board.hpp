@@ -20,6 +20,7 @@ namespace pandemic {
     class Board {
 
     private:
+        //std::map<City, int> citiesToNum;
         //was unsinged int
         std::map<City, int> diseaseCube;
         std::map<City, Color> cityColor;
@@ -27,7 +28,6 @@ namespace pandemic {
         std::map<City,bool> gotResearchStations;
         std::map<City,std::map<City,bool>> allCities;
         std::map<City, std::string> citiesToString;
-//        std::map<City, int> citiesToNum;
 
 
     public:
@@ -39,7 +39,7 @@ namespace pandemic {
         /*
          * this function return string that represent the given city
          */
-        const std::string ctToString(City ct);
+        std::string ctToString(City ct);
         /*
          * this function return the number of disease cube in a given city
          * you could also change it to a different number of cube
@@ -70,7 +70,7 @@ namespace pandemic {
         //The level of disease in each of the cities;
         //The drugs discovered so far ;
         //Research stations built so far.
-        friend std::ostream &operator<<(std::ostream &os, const Board &board);
+        friend std::ostream &operator<<(std::ostream &os, Board &board);
 
         /*
          * a function that return true if there is a research Station in the given city
@@ -87,7 +87,8 @@ namespace pandemic {
         * you also can change it to true\false using this function
         */
         bool & isDiseaseHasBeenCured(Color color){return isDiseaseCure[color];};
-    };
+
+        };
 }
 
 

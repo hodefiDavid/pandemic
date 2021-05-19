@@ -30,23 +30,23 @@ namespace pandemic{
          *  to any city of one of the card in his hand.
          *  To do this, throw the appropriate card to the city you are flying to.
          */
-        virtual Player fly_direct(City city);
+        virtual Player &fly_direct(City city);
 
         /* Moving from the current city to a nearby city
          * (according to the context map).
          */
-        virtual Player drive(City city);
+        virtual Player &drive(City city);
 
         /*Franchise flight - fly_charter - transfer from the current city to any city.
          * To do this, throw the appropriate card to the city you are in.
          */
-        virtual Player fly_charter(City city);
+        virtual Player &fly_charter(City city);
 
         /*Shuttle flight - fly_shuttle
          * If there is a research station in the current city,
          * you can fly to any other city that has a research station.
          */
-        virtual Player fly_shuttle(City city);
+        virtual Player &fly_shuttle(City city);
 
         /*Build - build a research station in the city
          * that you are located in.
@@ -57,7 +57,7 @@ namespace pandemic{
          * and a "build" operation is performed again,
          * we do not throw an exception, and the card remains in the player's hands.
          */
-        virtual Player build();
+        virtual Player &build();
 
         /*Drug discovery - discover_cure - Drug discovery for a disease of a certain color.
          * To do this, you must be in a city that has a research station,
@@ -68,7 +68,7 @@ namespace pandemic{
          * and a "cure discovery" for the same disease is performed again,
          * we do not throw an exception, and the cards remain in the player's hands.
          */
-        virtual Player discover_cure(Color color);
+        virtual Player &discover_cure(Color color);
 
         /*Treat - Disease - lowering one disease cube from the city you are in
          * (reducing the level of the disease by 1).
@@ -78,14 +78,14 @@ namespace pandemic{
          * If there is no infection at all in the city (the disease level is 0),
          * then the action will throw an exception.
          */
-        virtual Player treat(City city);
+        virtual Player &treat(City city);
 
         /*
          * Taking some city card.
          * This simulates the process by which the player receives cards
          * from the deck at the beginning or during the game.
          */
-        Player take_card(City city){
+        Player &take_card(City city){
             cards[city] = true;
             return *this;}
 
@@ -95,7 +95,7 @@ namespace pandemic{
         std::string role(){return this->charactersRole;}
 
         //remove all the card from the players hand
-        Player remove_cards();
+        void remove_cards();
 
     };
 

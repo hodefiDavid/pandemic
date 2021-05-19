@@ -11,7 +11,7 @@ pandemic::Medic::Medic(pandemic::Board &board, City city) : Player(board, city) 
     initCards();
 }
 
-pandemic::Player pandemic::Medic::treat(City city) {
+pandemic::Player &pandemic::Medic::treat(City city) {
     //the medic need to be in same city that he treat
     if (location==city){
         //if there is disease cube in the city
@@ -27,27 +27,27 @@ pandemic::Player pandemic::Medic::treat(City city) {
 }
 
 
-pandemic::Player pandemic::Medic::fly_direct(City city) {
+pandemic::Player &pandemic::Medic::fly_direct(City city) {
     return Player::fly_direct(city);
 }
 
-pandemic::Player pandemic::Medic::drive(City city) {
+pandemic::Player &pandemic::Medic::drive(City city) {
     return Player::drive(city);
 }
 
-pandemic::Player pandemic::Medic::fly_charter(City city) {
+pandemic::Player &pandemic::Medic::fly_charter(City city) {
     return Player::fly_charter(city);
 }
 
-pandemic::Player pandemic::Medic::fly_shuttle(City city) {
+pandemic::Player &pandemic::Medic::fly_shuttle(City city) {
     return Player::fly_shuttle(city);
 }
 
-pandemic::Player pandemic::Medic::build() {
+pandemic::Player &pandemic::Medic::build() {
     return Player::build();
 }
 
-pandemic::Player pandemic::Medic::discover_cure(pandemic::Color color) {
+pandemic::Player &pandemic::Medic::discover_cure(pandemic::Color color) {
     return Player::discover_cure(color);
 }
 
