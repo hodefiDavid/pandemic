@@ -10,25 +10,6 @@ pandemic::GeneSplicer::GeneSplicer(pandemic::Board &board, City city) : Player(b
     initCards();
 }
 
-pandemic::Player &pandemic::GeneSplicer::fly_direct(City city) {
-    return Player::fly_direct(city);
-}
-
-pandemic::Player &pandemic::GeneSplicer::drive(City city) {
-    return Player::drive(city);
-}
-
-pandemic::Player &pandemic::GeneSplicer::fly_charter(City city) {
-    return Player::fly_charter(city);
-}
-
-pandemic::Player &pandemic::GeneSplicer::fly_shuttle(City city) {
-    return Player::fly_shuttle(city);
-}
-
-pandemic::Player &pandemic::GeneSplicer::build() {
-    return Player::build();
-}
 
 pandemic::Player& pandemic::GeneSplicer::discover_cure(pandemic::Color color) {
     if (this->board.isDiseaseHasBeenCured(color)){return *this;}
@@ -65,8 +46,4 @@ pandemic::Player& pandemic::GeneSplicer::discover_cure(pandemic::Color color) {
                 "when the GeneSplicer use discover_cure,in his location there was not a research station");
 
 
-}
-
-pandemic::Player &pandemic::GeneSplicer::treat(City city) {
-    return Player::treat(city);
 }

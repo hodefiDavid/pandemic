@@ -60,36 +60,6 @@ pandemic::Player &pandemic::Scientist::discover_cure(pandemic::Color color) {
 
 }
 
-pandemic::Player &pandemic::Scientist::fly_direct(City city) {
-    return Player::fly_direct(city);
-}
-
-pandemic::Player &pandemic::Scientist::drive(City city) {
-    return Player::drive(city);
-}
-
-pandemic::Player &pandemic::Scientist::fly_charter(City city) {
-    return Player::fly_charter(city);
-}
-
-pandemic::Player &pandemic::Scientist::fly_shuttle(City city) {
-    return Player::fly_shuttle(city);
-}
-
-pandemic::Player &pandemic::Scientist::build() {
-    return Player::build();
-}
-
-
-    pandemic::Player &pandemic::Scientist::treat(City city) {
-        return Player::treat(city);
-    }
-
-//pandemic::Player pandemic::Scientist::take_card(City city) {
-//    return Player::take_card(city);
-//}
-//
-
 
 
 

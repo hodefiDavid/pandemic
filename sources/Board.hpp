@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Color.hpp"
+#include "colorStr.hpp"
 #include "Player.hpp"
 #include "City.hpp"
 #include <iostream>
@@ -20,17 +21,26 @@ namespace pandemic {
     class Board {
 
     private:
-        //std::map<City, int> citiesToNum;
-        //was unsinged int
-        std::map<City, int> diseaseCube;
+        //could be static
         std::map<City, Color> cityColor;
+        //connection Neighbors
+        std::map<City,std::map<City,bool>> allCities;
+
+        std::map<City, int> diseaseCube;        //was unsinged int
         std::map<Color,bool> isDiseaseCure;
         std::map<City,bool> gotResearchStations;
-        std::map<City,std::map<City,bool>> allCities;
-        std::map<City, std::string> citiesToString;
+        //std::map<City, std::string> citiesToString;
+
+        //for show
+        std::map<City, std::string> CtWC;
+        std::map<City, std::string> ctTsh;
+
 
 
     public:
+        //for the main need to change
+        std::map<City, std::string> citiesToString;
+
         Board();
         /*
          * this function return true if city 1 and city 2 are neighbor (only one road between them) according to thr game map
@@ -87,6 +97,8 @@ namespace pandemic {
         * you also can change it to true\false using this function
         */
         bool & isDiseaseHasBeenCured(Color color){return isDiseaseCure[color];};
+
+         std::string showctd(City ct);
 
         };
 }

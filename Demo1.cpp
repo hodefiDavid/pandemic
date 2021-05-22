@@ -148,7 +148,10 @@ int main() {
 	 .treat(City::Chicago)             // remove one disease cube - there is no blue cure yet.
      .fly_direct(City::HoChiMinhCity)
 	 .treat(City::HoChiMinhCity);      // remove one disease cube - there is no red cure yet.
-
+    board[City::Sydney] = 5;
+    board[City::NewYork] = 5;
+    board[City::Baghdad] = 1;
+    board[City::SaoPaulo] = 2;
 	cout << board << endl;  // prints the board in any reasonable format.
 	cout << board.is_clean() << endl;  // prints "1" - the board is clean - congratulations!!! You treated all diseases!!!
 }
